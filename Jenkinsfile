@@ -36,5 +36,25 @@ pipeline {
                 }
             }
         }
+        stage('Update K8s Manifests') {
+            steps {
+                sh '''
+                rm -rf k8s-manifests-repo
+
+                git clone https://github.com/repalPrem11/new-cicd-project-argo.git
+                cd new-cicd-project-argo/k8s-manifests
+
+                sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|g" deployment.yaml
+
+                git config user.name "jenkins"
+                git config user.email "jenkins@example.com"
+
+                git add .
+                git commit -m "Update image to $TAG"
+                git push
+                '''
+            }
+        }
+
     }
 }
