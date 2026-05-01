@@ -49,8 +49,9 @@ pipeline {
                 git config user.email "jenkins@example.com"
 
                 git add .
-                git commit -m "Update image to $TAG"
-                git push
+                git commit -m "Update image to $TAG" || true
+
+                git push origin main
                 '''
             }
         }
