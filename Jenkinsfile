@@ -41,8 +41,7 @@ pipeline {
                 sh '''
                 rm -rf k8s-manifests-repo
 
-                git clone https://github.com/repalPrem11/new-cicd-project-argo.git
-                cd new-cicd-project-argo/k8s-manifests
+                cd k8s-manifests
 
                 sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|g" deployment.yaml
 
