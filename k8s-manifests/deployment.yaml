@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cafe-ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cafe-ui
+  template:
+    metadata:
+      labels:
+        app: cafe-ui
+    spec:
+      containers:
+      - name: cafe-ui
+        image: premrepal/cafe-ui:1
+        ports:
+        - containerPort: 80
+
+
