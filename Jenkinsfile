@@ -10,8 +10,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo "Checking out code..."
-                git 'https://github.com/repalPrem11/new-cicd-project-argo.git'
+                git branch: 'main', url: 'https://github.com/YOUR_USERNAME/YOUR_APP_REPO.git'
             }
         }
 
