@@ -36,25 +36,31 @@ pipeline {
                 }
             }
         }
-        stage('Update K8s Manifests') {
-            steps {
-                sh '''
-                rm -rf k8s-manifests-repo
+stage('Update K8s Manifests') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'git-creds',
+            usernameVariable: 'GIT_USER',
+            passwordVariable: 'GIT_PASS'
+        )]) {
+            sh '''
+            cd k8s-manifests
 
-                cd k8s-manifests
+            sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|g" deployment.yaml
 
-                sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|g" deployment.yaml
+            git config user.name "jenkins"
+            git config user.email "jenkins@example.com"
 
-                git config user.name "jenkins"
-                git config user.email "jenkins@example.com"
+            git add .
+            git commit -m "Update image to $TAG" || true
 
-                git add .
-                git commit -m "Update image to $TAG" || true
+            git remote set-url origin https://$GIT_USER:$GIT_PASS@github.com/repalPrem11/new-cicd-project-argo.git
 
-                git push origin main
-                '''
-            }
+            git push origin main
+            '''
         }
+    }
+}
 
     }
 }
