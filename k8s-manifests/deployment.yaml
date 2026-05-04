@@ -14,7 +14,12 @@ spec:
     spec:
       containers:
       - name: cafe-ui
+<<<<<<< HEAD
         image: premrepal/cafe-ui:31
+=======
+        image: premrepal/cafe-ui:30
+        imagePullPolicy: Always
+>>>>>>> 4d20f43 (fixed image policy)
         ports:
         - containerPort: 80
 
