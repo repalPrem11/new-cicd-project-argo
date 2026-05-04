@@ -12,16 +12,16 @@ spec:
       labels:
         app: cafe-ui
     spec:
-containers:
-  - name: cafe-ui
-    image: premrepal/cafe-ui:30
-    imagePullPolicy: Always
-    ports:
-      - containerPort: 80
-    resources:
-      requests:
-        cpu: "100m"
-      limits:
-        cpu: "200m"
+      containers:
+        - name: cafe-ui
+          image: premrepal/cafe-ui:30
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "200m"
 
 
