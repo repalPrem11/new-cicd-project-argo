@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cafe-ui
-        image: premrepal/cafe-ui:30
+        image: premrepal/cafe-ui:31
         ports:
         - containerPort: 80
 
